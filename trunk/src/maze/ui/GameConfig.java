@@ -6,6 +6,7 @@
 package maze.ui;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -144,8 +145,14 @@ public class GameConfig {
 
     }
 
+    public HashMap<Integer, Integer> numVisits = new HashMap<Integer, Integer>();
     public Boolean addVisitedRoom(int room)
     {
+    	if(numVisits.containsKey(room))
+    		numVisits.put(room, numVisits.get(room) +1);
+    	else
+    		numVisits.put(room, 1);
+    	
         Boolean add = true;
         for(int loop=0;loop<visited_rooms.size();loop++)
         {
