@@ -30,11 +30,11 @@ public class GameController {
             // Now return score, but check to see if it needs to be doubled
             if(gameconfig.TreasureRoomFound == true)
             {
-                gameconfig.current_score += gameconfig.current_score;
+                return 2 * gameconfig.current_score;
             }
             //System.out.println("Score = " + gameconfig.current_score);
             return gameconfig.current_score;
-            
+
         }
 
         // Irrespective of where this function is called from, it needs to execute gameLogic based on
@@ -82,7 +82,7 @@ public class GameController {
         // AFTER POCKETING THIS OBJECT OR DROPPING ONE HERE, THE PLAYER MOVES ON
 
         // Now the player plays the game and returns move.direction [0-9]
-        
+
         int old_room = gameconfig.current_room;
         gameconfig.current_room = gameconfig.passageQuery(old_room, currentMove.direction);
         // If current_room = -1 means the above move was illegal
@@ -118,7 +118,7 @@ public class GameController {
 
     }
 
-    
-   
+
+
 
 }
