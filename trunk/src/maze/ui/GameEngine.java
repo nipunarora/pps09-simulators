@@ -45,23 +45,23 @@ public class GameEngine extends javax.swing.JFrame {
                 int score;
                 while(play == true)
                 {
-                    score = gamecontroller.GamePlay(gameconfig);
-                if(score !=-1)
-                {
-                    // Game must have ended, since you have a score now
-                   play = false;
-                   String gameover = "Game Over. Score: " + score;
-                   JOptionPane.showMessageDialog(game_scrollpane, gameover);
-                }
-                uicontroller.gc_local = gameconfig;
-                
-                uicontroller.repaint();
+                	score = gamecontroller.GamePlay(gameconfig);
+                	if(score !=-1)
+                	{
+                		// Game must have ended, since you have a score now
+                		play = false;
+                		String gameover = "Game Over. Score: " + score;
+                		JOptionPane.showMessageDialog(game_scrollpane, gameover);
+                	}
+                	uicontroller.gc_local = gameconfig;
 
-                game_scrollpane.repaint();
+                	uicontroller.repaint();
 
-                txt_round_copy.setText(Integer.toString(gameconfig.current_round));
-                txt_score_copy.setText(Integer.toString(gameconfig.current_score));
-                Thread.sleep(gameDelay);
+                	game_scrollpane.repaint();
+
+                	txt_round_copy.setText(Integer.toString(gameconfig.current_round));
+                	txt_score_copy.setText(Integer.toString(gameconfig.current_score));
+                	Thread.sleep(gameDelay);
 
                 }
             } catch (InterruptedException ex) {
