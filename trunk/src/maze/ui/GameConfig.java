@@ -93,6 +93,16 @@ public class GameConfig {
             }
         }
 
+		// Also make a reverse some reverse edge visited.
+        for(int loop=0;loop<PassageList.size();loop++)
+        {
+            RoomRoomLink rrl_temp = PassageList.get(loop);
+            if(rrl_temp.room1 == room2 && rrl_temp.room2 == room1)
+            {
+                rrl_temp.visited = true;
+                break;
+            }
+        }
 
     }
 
