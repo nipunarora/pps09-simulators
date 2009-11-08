@@ -28,9 +28,15 @@ public class GameController {
         if(gameconfig.current_round == gameconfig.number_of_turns)
         {
             // Now return score, but check to see if it needs to be doubled
-            if(gameconfig.TreasureRoomFound == true)
+           if(gameconfig.TreasureRoomFound == true)
             {
-                return 2 * gameconfig.current_score;
+                gameconfig.current_score -= 20;
+            	gameconfig.current_score += gameconfig.current_score;
+                
+            }
+            else
+            {
+            	gameconfig.current_score -= 10;
             }
             //System.out.println("Score = " + gameconfig.current_score);
             return gameconfig.current_score;
