@@ -83,21 +83,24 @@ public class GameConfig {
     public void makeRRLVisited(int room1, int room2, int direction_label)
     {
         // Go through PassageList to get the answer
+    	boolean wasvisited = false;
         for(int loop=0;loop<PassageList.size();loop++)
         {
             RoomRoomLink rrl_temp = PassageList.get(loop);
             if(rrl_temp.room1 == room1 && rrl_temp.direction_label == direction_label && rrl_temp.room2 == room2)
             {
+            	wasvisited = rrl_temp.visited;
                 rrl_temp.visited = true;
                 break;
             }
         }
-
-		// Also make a reverse some reverse edge visited.
-        for(int loop=0;loop<PassageList.size();loop++)
+        // if this link was already visited, or is a self-loop link,
+        // don't mark anything else
+        if (wasvisited || room1 == room2) return;
+		// Otherwise, also mark some previously unvisited reverse edge visited.
+        for(RoomRoomLink rrl_temp  : PassageList)
         {
-            RoomRoomLink rrl_temp = PassageList.get(loop);
-            if(rrl_temp.room1 == room2 && rrl_temp.room2 == room1)
+            if(rrl_temp.room1 == room2 && rrl_temp.room2 == room1 && !rrl_temp.visited )
             {
                 rrl_temp.visited = true;
                 break;
@@ -162,7 +165,7 @@ public class GameConfig {
     		numVisits.put(room, numVisits.get(room) +1);
     	else
     		numVisits.put(room, 1);
-    	
+
         Boolean add = true;
         for(int loop=0;loop<visited_rooms.size();loop++)
         {
