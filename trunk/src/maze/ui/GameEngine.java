@@ -45,23 +45,23 @@ public class GameEngine extends javax.swing.JFrame {
                 int score;
                 while(play == true)
                 {
-                	score = gamecontroller.GamePlay(gameconfig);
-                	if(score !=-1)
-                	{
-                		// Game must have ended, since you have a score now
-                		play = false;
-                		String gameover = "Game Over. Score: " + score;
-                		JOptionPane.showMessageDialog(game_scrollpane, gameover);
-                	}
-                	uicontroller.gc_local = gameconfig;
+                    score = gamecontroller.GamePlay(gameconfig);
+                if(score !=-1)
+                {
+                    // Game must have ended, since you have a score now
+                   play = false;
+                   String gameover = "Game Over. Score: " + score;
+                   JOptionPane.showMessageDialog(game_scrollpane, gameover);
+                }
+                uicontroller.gc_local = gameconfig;
+                
+                uicontroller.repaint();
 
-                	uicontroller.repaint();
+                game_scrollpane.repaint();
 
-                	game_scrollpane.repaint();
-
-                	txt_round_copy.setText(Integer.toString(gameconfig.current_round));
-                	txt_score_copy.setText(Integer.toString(gameconfig.current_score));
-                	Thread.sleep(gameDelay);
+                txt_round_copy.setText(Integer.toString(gameconfig.current_round));
+                txt_score_copy.setText(Integer.toString(gameconfig.current_score));
+                Thread.sleep(gameDelay);
 
                 }
             } catch (InterruptedException ex) {
@@ -120,6 +120,8 @@ public class GameEngine extends javax.swing.JFrame {
         txt_score = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         zoomSlider = new javax.swing.JSlider();
+
+
         NewGameButton = new javax.swing.JButton();
         StepButton = new javax.swing.JButton();
         PlayButton = new javax.swing.JButton();
@@ -177,10 +179,10 @@ public class GameEngine extends javax.swing.JFrame {
         jLabel3.setText("Image zoom:");
 
         zoomSlider.setMajorTickSpacing(1);
-        zoomSlider.setMaximum(8);
+        zoomSlider.setMaximum(100);
         zoomSlider.setMinimum(1);
         zoomSlider.setMinorTickSpacing(1);
-        zoomSlider.setValue(3);
+        zoomSlider.setValue(9);
         zoomSlider.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 zoomSliderStateChanged(evt);
@@ -474,6 +476,8 @@ public class GameEngine extends javax.swing.JFrame {
         uicontroller = null;
         uicontroller = new JBVisualizer();
         uicontroller.gc_local = gameconfig;
+        uicontroller.setZoom(zoomSlider.getValue());
+
 //        uicontroller.repaint();
 
 //        buff_im = uicontroller.getImage();
@@ -517,7 +521,10 @@ public class GameEngine extends javax.swing.JFrame {
         gameconfig.zoomValue = zoomSlider.getValue();
          uicontroller = null;
         uicontroller = new JBVisualizer();
+        uicontroller.setZoom(zoomSlider.getValue());
+
         uicontroller.gc_local = gameconfig;
+        uicontroller.layoutGraph();        
 //        uicontroller.repaint();
 
 
@@ -591,7 +598,8 @@ public class GameEngine extends javax.swing.JFrame {
         txt_round_copy = this.txt_round;
         txt_score_copy = this.txt_score;
         uicontroller = new JBVisualizer();
-       
+        uicontroller.setZoom(zoomSlider.getValue());
+
 
 //       uicontroller.setLocation(20, 100);
 //        uicontroller.setSize(new Dimension(900, 700));

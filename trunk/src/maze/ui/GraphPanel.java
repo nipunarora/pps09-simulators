@@ -52,7 +52,12 @@ public class GraphPanel extends JPanel{
 	protected JGraph graph;
 	protected JGraphFacade facade;
 	Object parent;
-	JGraphLayout layout;
+	JGraphLayout layout = new JGraphFastOrganicLayout();
+	public void setZoom(double zoom)
+	{
+		((JGraphFastOrganicLayout) layout).setForceConstant(zoom*10);
+		layoutGraph();
+	}
 	public void clear()
 	{
 
@@ -64,7 +69,8 @@ public class GraphPanel extends JPanel{
 
 		
 		edgeCounts = new HashMap<Edge, Integer>();
-		 layout = new JGraphFastOrganicLayout();
+//		 layout = new JGraphFastOrganicLayout();
+		 
 //		((mxOrthogonalLayout) layout).
 		removeAll();		
 		add(graph);
@@ -117,7 +123,6 @@ public class GraphPanel extends JPanel{
 			facade = new JGraphFacade(graph);
 		Rectangle2D b = GraphConstants.getBounds(graph.getModel().getAttributes(vertices.get(3)));
 //		facade.run(layout, false);
-
 		layout.run(facade);
 		Map nested = facade.createNestedMap(true,true);
 		graph.getGraphLayoutCache().edit(nested);
