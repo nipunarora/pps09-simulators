@@ -107,8 +107,8 @@ public class Scrabble {
      {
          wordbag = new ArrayList<Letter>();
          // * = blank word
-         wordbag.add(new Letter('*', 0));
-         wordbag.add(new Letter('*', 0));
+//         wordbag.add(new Letter('*', 0));
+//         wordbag.add(new Letter('*', 0));
 
          for(int loop = 1;loop<=12;loop++)
          {

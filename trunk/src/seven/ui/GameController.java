@@ -39,7 +39,7 @@ public class GameController {
             {
 
                 Player currPlayer = gc_local.PObjectList.get(loop);
-                int bidValue = currPlayer.Bid(bidLetter,gc_local.BidList);
+                int bidValue = currPlayer.Bid(bidLetter,gc_local.BidList,gc_local.number_of_rounds);
                 // If player is full makes his value = 0.
                 if(bidValue < 0)
                 {
