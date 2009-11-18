@@ -275,8 +275,9 @@ public class GameEngine extends javax.swing.JFrame {
         LetterLabel.setText("Current Letter:");
 
         RoundsLabel.setBackground(new java.awt.Color(255, 102, 102));
-        RoundsLabel.setFont(new java.awt.Font("Tahoma", 0, 14));
+        RoundsLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         RoundsLabel.setText("Current Round:");
+        RoundsLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -297,7 +298,7 @@ public class GameEngine extends javax.swing.JFrame {
                 .addComponent(LetterLabel)
                 .addGap(18, 18, 18)
                 .addComponent(RoundsLabel)
-                .addContainerGap(249, Short.MAX_VALUE))
+                .addContainerGap(247, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
