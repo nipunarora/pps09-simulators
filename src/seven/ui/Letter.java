@@ -18,5 +18,17 @@ public class Letter {
         alphabet = c;
         value = s;
     }
+	/**
+	 * @return the alphabet
+	 */
+	public Character getAlphabet() {
+		return alphabet;
+	}
+	/**
+	 * @return the value
+	 */
+	public int getValue() {
+		return value;
+	}
 
 }
