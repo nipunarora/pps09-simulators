@@ -379,7 +379,7 @@ public class GameEngine extends javax.swing.JFrame {
         //PlayerListbox.setModel(new DefaultListModel());
         DefaultListModel dlm = (DefaultListModel) PlayerListbox.getModel();
         dlm.add(dlm.getSize(),(Object)player);
-        
+
 
     }//GEN-LAST:event_AddPlayerButtonActionPerformed
 
@@ -395,7 +395,7 @@ public class GameEngine extends javax.swing.JFrame {
              {
                  // Do nothing!
              }
-             
+
          }while(PlayerListbox.getSelectedIndices().length != 0);
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -576,7 +576,7 @@ public class GameEngine extends javax.swing.JFrame {
 		long free = r.freeMemory();
 		txtMemUsage.setText(((r.totalMemory() - free)/1024/1024) + "/"+(r.maxMemory()/1024/1024)+"MB");
         memUpdate= new Timer(500, new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Runtime r = Runtime.getRuntime();
@@ -585,7 +585,7 @@ public class GameEngine extends javax.swing.JFrame {
 //						(r.totalMemory() - free) + " bytes(?) -- free " + free
 //				);
 				txtMemUsage.setText(((r.totalMemory() - free)/1024/1024) + "/"+(r.maxMemory()/1024/1024)+"MB");
-				
+
 			}
 		});
         memUpdate.start();
@@ -611,7 +611,7 @@ public class GameEngine extends javax.swing.JFrame {
 
         String bidletter = "";
         DefaultTableModel dtm = (DefaultTableModel)ScreenTable.getModel();
-        
+
         while(dtm.getRowCount() != 0)
         {
             dtm.removeRow(0);
@@ -640,8 +640,14 @@ public class GameEngine extends javax.swing.JFrame {
                 bidvalue = gameconfig.BidList.get(lastbidIndex).bidvalues.get(loop);
                 bidletter = gameconfig.BidList.get(lastbidIndex).TargetLetter.alphabet.toString();
                 LetterLabel.setText("Current Letter: " + bidletter);
-                
-                StatusLabel.setText("<html>Status: Letter won by [" + gameconfig.BidList.get(lastbidIndex).wonBy + "]<br>(Winning bid: "  + gameconfig.BidList.get(lastbidIndex).winAmmount + ")</html>");
+                PlayerBids l = gameconfig.BidList.get(lastbidIndex);
+                String formatString = "<html>Status: Letter won by player %d [%s]<br>"
+							+ "Winning bid: %d (Actually paid: %d)</html>";
+                int winner_id = l.getWinnerID();
+				Object formatargs[] = {
+						winner_id + 1, l.getWonBy(), l.getBidvalues().get(winner_id),l.getWinAmmount()
+				};
+                StatusLabel.setText(String.format(formatString, formatargs));
             }
             }catch(Exception ex)
             {
@@ -662,13 +668,13 @@ public class GameEngine extends javax.swing.JFrame {
             if(gameconfig.wordbag.size() !=0)
             {
                 wbstring = gameconfig.wordbag.get(loop);
-                
+
             }
 
             if(gameconfig.lasPoints.size() != 0)
             {
                 points = gameconfig.lasPoints.get(loop).toString();
-                
+
             }
             Object[] UIData = new Object[]{playername.substring(playername.indexOf(".")+1),score + "   ",secretLetters,openLetters,bidvalue+ "   ",wordReturned,points,wbstring};
             dtm.addRow(UIData);
