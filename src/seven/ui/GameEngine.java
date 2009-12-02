@@ -666,6 +666,8 @@ public class GameEngine extends javax.swing.JFrame {
             if(gameconfig.PlayerWords.get(loop) != null)
             {
                 wordReturned = gameconfig.PlayerWords.get(loop);
+                if(wordReturned.length() == 7)
+                	wordReturned = "<html><b>"+wordReturned+"</b></html>";
             }
             } catch(Exception ex)
             {
