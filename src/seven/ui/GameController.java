@@ -9,8 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Random;
-import javax.naming.spi.DirStateFactory.Result;
-
+import org.apache.log4j.Logger;
 /**
  *
  * @author Satyajeet
@@ -19,6 +18,7 @@ public class GameController {
 
 
     ArrayList<Boolean> isplayerdone;
+    private Logger log = Logger.getLogger(GameController.class);
 
 
     // If gameover this function will return a (-1)
@@ -39,6 +39,7 @@ public class GameController {
             {
 
                 Player currPlayer = gc_local.PObjectList.get(loop);
+                log.info("Requesting bid from player " + loop + "(" + currPlayer.getClass().getName() + ")");
                 int bidValue = currPlayer.Bid(bidLetter,gc_local.BidList,gc_local.number_of_rounds,gc_local.PlayerList,gc_local.secretstateList.get(loop),loop);
                 // If player is full makes his value = 0.
                 if(bidValue < 0)
@@ -59,6 +60,7 @@ public class GameController {
                 thisBid.bidvalues.add(bidValue);
             }
             // add this PlayerBid to the bidlist
+            log.info("Done collecting bids");
             thisBid.TargetLetter = bidLetter;
             gc_local.BidList.add(thisBid);
             // Confirm that the bids are ok and resolve auction

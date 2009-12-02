@@ -13,6 +13,9 @@ import javax.swing.JTable;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -39,6 +42,12 @@ public class GameEngine extends javax.swing.JFrame {
     public static GameEngine thisGameEngine;
     /** Creates new form GameEngine */
     public static javax.swing.Timer memUpdate;
+    private Logger logger = Logger.getLogger(GameEngine.class);
+
+    static {
+		BasicConfigurator.configure();
+		Logger.getRootLogger().setLevel(org.apache.log4j.Level.INFO);
+    }
     public GameEngine() {
         initComponents();
         myInit();
